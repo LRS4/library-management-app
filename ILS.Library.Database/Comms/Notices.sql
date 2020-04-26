@@ -1,0 +1,8 @@
+﻿CREATE TABLE [Comms].[Notices]
+(
+	[NoticeId] INT NOT NULL IDENTITY(1,1), 
+    [Title] NVARCHAR(256) NOT NULL, 
+    [Content] NVARCHAR(MAX) NOT NULL, 
+    [ValidFrom] DATETIMEOFFSET NOT NULL, 
+    [ValidTo] DATETIMEOFFSET NOT NULL
+)

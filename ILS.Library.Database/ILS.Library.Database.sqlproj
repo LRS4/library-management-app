@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{de1decbf-4532-41eb-a129-0c7ff7efb2a3}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql140DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -56,5 +56,21 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Asset" />
+    <Folder Include="Users" />
+    <Folder Include="Branch" />
+    <Folder Include="Comms" />
+    <Folder Include="Security" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Users\Patron.sql" />
+    <Build Include="Security\Users.sql" />
+    <Build Include="Security\Asset.sql" />
+    <Build Include="Security\Branch.sql" />
+    <Build Include="Security\Comms.sql" />
+    <Build Include="Comms\Notices.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="ILS.Library.Database.refactorlog" />
   </ItemGroup>
 </Project>
