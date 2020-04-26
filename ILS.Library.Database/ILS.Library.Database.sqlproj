@@ -69,6 +69,14 @@
     <Build Include="Security\Branch.sql" />
     <Build Include="Security\Comms.sql" />
     <Build Include="Comms\Notices.sql" />
+    <Build Include="Branch\BranchDetails.sql" />
+    <Build Include="Asset\Status.sql" />
+    <Build Include="Branch\LibraryCard.sql" />
+    <Build Include="Branch\BranchHours.sql" />
+    <Build Include="Asset\Checkout.sql" />
+    <Build Include="Asset\LibraryAsset.sql" />
+    <Build Include="Asset\Hold.sql" />
+    <Build Include="Asset\CheckoutHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ILS.Library.Database.refactorlog" />

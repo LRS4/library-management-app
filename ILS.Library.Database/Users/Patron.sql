@@ -5,12 +5,26 @@
     [DateOfBirth]               NVARCHAR(MAX)       NOT NULL, 
     [FirstName]                 NVARCHAR(MAX)       NULL, 
     [LastName]                  NVARCHAR(MAX)       NULL, 
-    [TelephoneNumber]           NVARCHAR(50)        NULL
+    [Gender]                    NVARCHAR(50)        NULL,
+    [TelephoneNumber]           NVARCHAR(50)        NULL,
+    [HomeLibraryBranchId]       INT                 NOT NULL, 
+    [LibraryCardId]             INT                 NOT NULL, 
+    
 
     CONSTRAINT PK_Patron PRIMARY KEY CLUSTERED
     (
         [PatronId]
-    )
+    ), 
+
+    CONSTRAINT [FK_Patron_HomeLibraryBranchId] FOREIGN KEY
+    (
+        [HomeLibraryBranchId]
+    ) REFERENCES [Branch].[BranchDetails]([BranchId]),
+
+    CONSTRAINT [FK_Patron_LibraryCardId] FOREIGN KEY
+    (
+        [LibraryCardId]
+    ) REFERENCES [Branch].[LibraryCard]([LibraryCardId])
 )
 
 GO
