@@ -3,7 +3,7 @@
 	[BranchHoursId]             INT             IDENTITY(1,1),
 	[BranchId]                  INT             NULL, 
     [CloseTime]                 INT             NOT NULL, 
-    [DaysOfWeek]                INT             NOT NULL, 
+    [DayOfWeek]                 INT             NOT NULL, 
     [OpenTime]                  INT             NOT NULL
 
     CONSTRAINT PK_BranchHours PRIMARY KEY CLUSTERED
@@ -43,7 +43,7 @@ EXEC sp_addextendedproperty @name = N'MS_Description',
     @level1type = N'TABLE',
     @level1name = N'BranchHours',
     @level2type = N'COLUMN',
-    @level2name = N'DaysOfWeek'
+    @level2name = 'DayOfWeek'
 GO
 EXEC sp_addextendedproperty @name = N'MS_Description',
     @value = N'The hour at which the branch opens.',
