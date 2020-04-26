@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [Asset].[LibraryAsset]
 (
 	[LibraryAssetId]			INT				    IDENTITY(1,1), 
+    [Discriminator]             NVARCHAR(256)       NOT NULL,
     [Title]                     NVARCHAR(256)       NOT NULL, 
     [Author]                    NVARCHAR(256)       NULL,
     [DeweyIndex]                NVARCHAR(256)       NULL,

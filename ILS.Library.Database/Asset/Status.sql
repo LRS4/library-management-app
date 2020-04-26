@@ -1,8 +1,8 @@
 ﻿CREATE TABLE [Asset].[Status]
 (
-	[StatusId] INT NOT NULL PRIMARY KEY, 
-    [Description] NVARCHAR(MAX) NOT NULL, 
-    [Name] NVARCHAR(50) NOT NULL
+	[StatusId]              INT                 IDENTITY(1,1), 
+    [Description]           NVARCHAR(MAX)       NOT NULL, 
+    [Name]                  NVARCHAR(50)        NOT NULL
 
     CONSTRAINT PK_Status PRIMARY KEY CLUSTERED
     (
