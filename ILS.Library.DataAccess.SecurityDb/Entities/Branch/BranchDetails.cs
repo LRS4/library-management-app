@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using ILS.Library.DataAccess.SecurityDb.Entities.Users;
+using ILS.Library.DataAccess.SecurityDb.Entities.Asset;
 
-namespace ILS.Library.DataAccess.SecurityDb.Entities
+namespace ILS.Library.DataAccess.SecurityDb.Entities.Branch
 {
     public partial class BranchDetails
     {

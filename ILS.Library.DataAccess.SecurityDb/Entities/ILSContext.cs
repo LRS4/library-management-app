@@ -1,4 +1,8 @@
 ﻿using System;
+using ILS.Library.DataAccess.SecurityDb.Entities.Asset;
+using ILS.Library.DataAccess.SecurityDb.Entities.Branch;
+using ILS.Library.DataAccess.SecurityDb.Entities.Comms;
+using ILS.Library.DataAccess.SecurityDb.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -6,6 +10,8 @@ namespace ILS.Library.DataAccess.SecurityDb.Entities
 {
     public partial class ILSContext : DbContext
     {
+        #region Constructors
+
         public ILSContext()
         {
         }
@@ -14,6 +20,10 @@ namespace ILS.Library.DataAccess.SecurityDb.Entities
             : base(options)
         {
         }
+
+        #endregion
+
+        #region DbSets
 
         public virtual DbSet<BranchDetails> BranchDetails { get; set; }
         public virtual DbSet<BranchHours> BranchHours { get; set; }
@@ -25,6 +35,10 @@ namespace ILS.Library.DataAccess.SecurityDb.Entities
         public virtual DbSet<Notices> Notices { get; set; }
         public virtual DbSet<Patron> Patron { get; set; }
         public virtual DbSet<Status> Status { get; set; }
+
+        #endregion
+
+        #region Stored procedures
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -254,5 +268,7 @@ namespace ILS.Library.DataAccess.SecurityDb.Entities
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        #endregion
     }
 }

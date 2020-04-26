@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ILS.Library.DataAccess.SecurityDb.Entities
+namespace ILS.Library.DataAccess.SecurityDb.Entities.Branch
 {
     public partial class LibraryCard
     {
