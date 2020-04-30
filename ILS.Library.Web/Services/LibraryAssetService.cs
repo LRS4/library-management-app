@@ -2,9 +2,11 @@
 using ILS.Library.DataAccess.SecurityDb.Entities.Asset;
 using ILS.Library.DataAccess.SecurityDb.Entities.Branch;
 using ILS.Library.Web.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 
 namespace ILS.Library.Web.Services
@@ -36,42 +38,62 @@ namespace ILS.Library.Web.Services
 
         public IEnumerable<LibraryAsset> GetAll()
         {
-            throw new NotImplementedException();
-        }
-
-        public string GetAuthorOrDirector(int id)
-        {
-            throw new NotImplementedException();
+            return _context.LibraryAsset
+                .Include(asset => asset.Status)
+                .Include(asset => asset.Location);
         }
 
         public LibraryAsset GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.LibraryAsset
+                .FirstOrDefault(asset => asset.LibraryAssetId == id);
         }
 
         public BranchDetails GetCurrentLocation(int id)
         {
-            throw new NotImplementedException();
+            return GetById(id).Location;
+            // return _context.LibraryAsset.FirstOrDefault(asset => asset.LibraryAssetId == id).Location;  
         }
 
         public string GetDeweyIndex(int id)
         {
-            throw new NotImplementedException();
+            var asset = _context.LibraryAsset
+                .FirstOrDefault(asset => asset.LibraryAssetId == id);
+            return asset.Discriminator == "Book" ?
+                asset.DeweyIndex :
+                "";
         }
 
         public string GetISBN(int id)
         {
-            throw new NotImplementedException();
+            var asset = _context.LibraryAsset
+                .FirstOrDefault(asset => asset.LibraryAssetId == id);
+            return asset.Discriminator == "Book" ?
+                asset.ISBN :
+                "";
         }
 
         public string GetTitle(int id)
         {
-            throw new NotImplementedException();
+            return _context.LibraryAsset
+                .FirstOrDefault(asset => asset.LibraryAssetId == id).Title;
         }
 
         public string GetType(int id)
         {
-            throw new NotImplementedException();
+            var book = _context.LibraryAsset
+                .Where(b => b.LibraryAssetId == id);
+
+            return book.Any() ? "Book" : "Video";
+        }
+
+        public string GetAuthorOrDirector(int id)
+        {
+            var asset = _context.LibraryAsset
+                .FirstOrDefault(asset => asset.LibraryAssetId == id);
+            return asset.Discriminator == "Book" ?
+                asset.Author :
+                asset.Director;
         }
     }
     #endregion
