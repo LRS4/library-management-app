@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ILS.Library.DataAccess.SecurityDb.Entities.Branch;
+using System;
 using System.Collections.Generic;
 
 namespace ILS.Library.DataAccess.SecurityDb.Entities.Users

@@ -158,7 +158,7 @@ namespace ILS.Library.DataAccess.SecurityDb.Entities
                     .IsRequired()
                     .HasMaxLength(256);
 
-                entity.Property(e => e.Isbn)
+                entity.Property(e => e.ISBN)
                     .HasColumnName("ISBN")
                     .HasMaxLength(256);
 

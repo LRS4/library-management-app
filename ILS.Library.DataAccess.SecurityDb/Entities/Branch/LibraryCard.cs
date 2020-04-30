@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ILS.Library.DataAccess.SecurityDb.Entities.Asset;
+using ILS.Library.DataAccess.SecurityDb.Entities.Users;
+using System;
 using System.Collections.Generic;
 
 namespace ILS.Library.DataAccess.SecurityDb.Entities.Branch
