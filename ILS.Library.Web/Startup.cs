@@ -2,9 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ILS.Library.DataAccess.SecurityDb.Entities;
+using ILS.Library.Web.Services;
+using ILS.Library.Web.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +28,15 @@ namespace ILS.Library.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddMvc();
+            services.AddSingleton(Configuration);
+
+            services.AddScoped<ILibraryAsset, LibraryAssetService>();
+
+            services.AddDbContext<ILSContext>(options =>
+            {
+                options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ILS");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
