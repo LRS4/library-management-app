@@ -17,8 +17,6 @@ Post-Deployment Script Template
 
 PRINT N'Populating branch details'
 
-DELETE FROM [Branch].[BranchDetails]
-
 INSERT INTO 
 [Branch].[BranchDetails](ImageUrl, [Address], [Name], Telephone, OpenDate, [Description]) 
 VALUES 
@@ -29,8 +27,6 @@ VALUES
 PRINT N'Branch details populated'
 
 PRINT N'Populating library card information'
-
-DELETE FROM [Branch].[LibraryCard]
 
 INSERT INTO [Branch].[LibraryCard](Created, Fees) VALUES 
 ('2017-06-20', 12.00),
@@ -45,8 +41,6 @@ INSERT INTO [Branch].[LibraryCard](Created, Fees) VALUES
 PRINT N'Branch details populated'
 
 PRINT N'Populating patron details'
-
-DELETE FROM [Users].[Patron]
 
 INSERT INTO 
 [Users].[Patron]([Address], DateOfBirth, FirstName, HomeLibraryBranchId, LastName, LibraryCardId, TelephoneNumber) VALUES
@@ -63,8 +57,6 @@ PRINT N'Patron details populated'
 
 PRINT N'Populating list of status options'
 
-DELETE FROM [Asset].[Status]
-
 INSERT INTO [Asset].[Status]
 ([Name], [Description]) VALUES
 ('Checked Out', 'A library asset that has been checked out'),
@@ -75,8 +67,6 @@ INSERT INTO [Asset].[Status]
 PRINT N'Status options populated'
 
 PRINT N'Populating list of library assets (books and videos)'
-
-DELETE FROM [Asset].[LibraryAsset]
 
 INSERT INTO [Asset].[LibraryAsset]
 (Discriminator, Cost, LocationId, StatusId, Author, DeweyIndex, ISBN, Title, [Year], Director, ImageUrl, NumberOfCopies) VALUES
@@ -105,8 +95,6 @@ INSERT INTO [Asset].[LibraryAsset]
 PRINT N'Assets populated'
 
 PRINT N'Inserting branch opening hours)'
-
-DELETE FROM [Branch].[BranchHours]
 
 INSERT INTO [Branch].[BranchHours](BranchId, CloseTime, [DayOfWeek], OpenTime) VALUES 
 (1, 14, 1, 7),
