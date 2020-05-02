@@ -31,7 +31,7 @@ namespace ILS.Library.Web
             services.AddMvc();
             services.AddSingleton(Configuration);
 
-            services.AddScoped<ILibraryAsset, LibraryAssetService>();
+            services.AddScoped<ILibraryAssetService, LibraryAssetService>();
 
             services.AddDbContext<ILSContext>(options =>
             {

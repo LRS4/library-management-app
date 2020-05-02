@@ -12,14 +12,14 @@ namespace ILS.Library.Web.Controllers
     {
         #region Private properties
 
-        private ILibraryAsset _libraryAssetService;
+        private ILibraryAssetService _libraryAssetService;
 
         #endregion
 
         #region Constructor
 
         public CatalogController(
-            ILibraryAsset libraryAssetService)
+            ILibraryAssetService libraryAssetService)
         {
             _libraryAssetService = libraryAssetService;
         }
@@ -45,6 +45,27 @@ namespace ILS.Library.Web.Controllers
             var model = new IndexViewModel()
             {
                 Assets = listingResult
+            };
+
+            return View(model);
+        }
+
+        public IActionResult Detail(int id)
+        {
+            var asset = _libraryAssetService.GetById(id);
+
+            var model = new AssetDetailViewModel
+            {
+                AssetId = id,
+                Title = asset.Title,
+                Year = asset.Year,
+                Cost = asset.Cost.ToString(),
+                Status = asset.Status.Name,
+                ImageUrl = asset.ImageUrl,
+                AuthorOrDirector = _libraryAssetService.GetAuthorOrDirector(id),
+                CurrentLocation = _libraryAssetService.GetCurrentLocation(id).Name,
+                DeweyCallNumber = _libraryAssetService.GetDeweyIndex(id),
+                ISBN = _libraryAssetService.GetISBN(id)
             };
 
             return View(model);

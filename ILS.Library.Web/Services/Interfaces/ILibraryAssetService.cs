@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ILS.Library.Web.Services.Interfaces
 {
-    public interface ILibraryAsset
+    public interface ILibraryAssetService
     {
         IEnumerable<LibraryAsset> GetAll();
         LibraryAsset GetById(int id);

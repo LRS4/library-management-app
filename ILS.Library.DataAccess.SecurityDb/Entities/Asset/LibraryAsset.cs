@@ -49,6 +49,8 @@ namespace ILS.Library.DataAccess.SecurityDb.Entities.Asset
 
         [ForeignKey("LocationId")]
         public virtual BranchDetails Location { get; set; }
+
+        [ForeignKey("StatusId")]
         public virtual Status Status { get; set; }
         public virtual ICollection<Checkout> Checkout { get; set; }
         public virtual ICollection<CheckoutHistory> CheckoutHistory { get; set; }

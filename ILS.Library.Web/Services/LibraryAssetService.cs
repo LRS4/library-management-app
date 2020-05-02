@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ILS.Library.Web.Services
 {
-    public class LibraryAssetService : ILibraryAsset
+    public class LibraryAssetService : ILibraryAssetService
     {
 
         #region Private Properties
@@ -46,6 +46,8 @@ namespace ILS.Library.Web.Services
         public LibraryAsset GetById(int id)
         {
             return _context.LibraryAsset
+                .Include(asset => asset.Status)
+                .Include(asset => asset.Location)
                 .FirstOrDefault(asset => asset.LibraryAssetId == id);
         }
 
