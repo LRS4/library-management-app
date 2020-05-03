@@ -20,7 +20,7 @@ namespace ILS.Library.Web.Models.Catalog
         public string CurrentLocation { get; set; }
         public string ImageUrl { get; set; }
         public string PatronName { get; set; }
-        public Checkout LastestCheckout { get; set; }
+        public Checkout LatestCheckout { get; set; }
         public IEnumerable<CheckoutHistory> CheckoutHistory { get; set; }
         public IEnumerable<AssetHoldModel> CurrentHolds { get; set; }
     }

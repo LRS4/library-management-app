@@ -13,15 +13,18 @@ namespace ILS.Library.Web.Controllers
         #region Private properties
 
         private ILibraryAssetService _libraryAssetService;
+        private ICheckoutService _checkoutService;
 
         #endregion
 
         #region Constructor
 
         public CatalogController(
-            ILibraryAssetService libraryAssetService)
+            ILibraryAssetService libraryAssetService,
+            ICheckoutService checkoutService)
         {
             _libraryAssetService = libraryAssetService;
+            _checkoutService = checkoutService;
         }
 
         #endregion
@@ -53,6 +56,12 @@ namespace ILS.Library.Web.Controllers
         public IActionResult Detail(int id)
         {
             var asset = _libraryAssetService.GetById(id);
+            var currentHolds = _checkoutService.GetCurrentHolds(id)
+                .Select(a => new AssetHoldModel
+                {
+                    HoldPlaced = _checkoutService.GetCurrentHoldPlaced(a.HoldId).ToString("d"),
+                    PatronName = _checkoutService.GetCurrentHoldPatronName(a.HoldId)
+                });
 
             var model = new AssetDetailViewModel
             {
@@ -65,7 +74,11 @@ namespace ILS.Library.Web.Controllers
                 AuthorOrDirector = _libraryAssetService.GetAuthorOrDirector(id),
                 CurrentLocation = _libraryAssetService.GetCurrentLocation(id).Name,
                 DeweyCallNumber = _libraryAssetService.GetDeweyIndex(id),
-                ISBN = _libraryAssetService.GetISBN(id)
+                ISBN = _libraryAssetService.GetISBN(id),
+                CheckoutHistory = _checkoutService.GetCheckoutHistory(id),
+                LatestCheckout = _checkoutService.GetLatestCheckout(id),
+                PatronName = _checkoutService.GetCurrentCheckoutPatron(id),
+                CurrentHolds = currentHolds 
             };
 
             return View(model);

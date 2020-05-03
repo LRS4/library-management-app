@@ -32,6 +32,7 @@ namespace ILS.Library.Web
             services.AddSingleton(Configuration);
 
             services.AddScoped<ILibraryAssetService, LibraryAssetService>();
+            services.AddScoped<ICheckoutService, CheckoutService>();
 
             services.AddDbContext<ILSContext>(options =>
             {
