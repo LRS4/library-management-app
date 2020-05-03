@@ -18,17 +18,13 @@ namespace ILS.Library.Web.Services.Interfaces
         DateTime GetCurrentHoldPlaced(int holdId);
         string GetCurrentCheckoutPatron(int assetId);
         string GetCurrentHoldPatronName(int holdId);
+        bool IsCheckedOut(int assetId);
 
         void Add(Checkout newCheckout);
         void CheckOutItem(int assetId, int libraryCardId);
-        void CheckInItem(int assetId, int libraryCardId);
+        void CheckInItem(int assetId);
         void MarkLost(int assetId);
         void MarkFound(int assetId);
         void PlaceHold(int assetId, int libraryCardId);
-
-       
-        
-
-        
     }
 }

@@ -139,6 +139,7 @@ namespace ILS.Library.Web.Services
             var now = DateTime.Now;
 
             var asset = _context.LibraryAsset
+                .Include(a => a.Status)
                 .FirstOrDefault(a => a.LibraryAssetId == assetId);
 
             var card = _context.LibraryCard
@@ -160,7 +161,7 @@ namespace ILS.Library.Web.Services
             _context.SaveChanges();
         }
 
-        public void CheckInItem(int assetId, int libraryCardId)
+        public void CheckInItem(int assetId)
         {
             var now = DateTime.Now;
 
@@ -183,6 +184,7 @@ namespace ILS.Library.Web.Services
             if (currentHolds.Any())
             {
                 CheckoutToEarliestHold(assetId, currentHolds);
+                return;
             }
 
             // otherwise, update the item status to available
@@ -232,16 +234,17 @@ namespace ILS.Library.Web.Services
             _context.SaveChanges();
         }
 
-
-        #endregion
-
-        #region Private Methods
-        private bool IsCheckedOut(int assetId)
+        public bool IsCheckedOut(int assetId)
         {
             return _context.Checkout
                 .Where(co => co.LibraryAssetId == assetId)
                 .Any();
         }
+
+
+        #endregion
+
+        #region Private Methods
 
         private DateTime? GetDefaultCheckoutTime(DateTime now)
         {

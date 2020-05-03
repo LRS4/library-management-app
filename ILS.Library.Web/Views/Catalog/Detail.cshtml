@@ -34,10 +34,10 @@
             @if (Model.Status == "Checked Out")
             {
                 <p id="itemPatron">Checked Out By: @Model.PatronName</p>
-                <a class="btn btn-lg btn-info" role="button" asp-controller="Catalog" asp-action="CheckIn" asp-route-id="@Model.AssetId">
+                <a class="btn btn-lg btn-success" role="button" asp-controller="Catalog" asp-action="CheckIn" asp-route-id="@Model.AssetId">
                     Check In
                 </a>
-                <a class="btn btn-lg btn-info" role="button" asp-controller="Catalog" asp-action="Hold" asp-route-id="@Model.AssetId">
+                <a class="btn btn-lg btn-warning" role="button" asp-controller="Catalog" asp-action="PlaceHold" asp-route-id="@Model.AssetId">
                     Place Hold
                 </a>
             }
@@ -85,13 +85,13 @@
                 @foreach (var checkout in Model.CheckoutHistory)
                 {
                     <tr>
-                        <td class="itemLabel">
+                        <td >
                             @checkout.CheckedOut
                         </td>
-                        <td class="itemValue">
+                        <td>
                             @checkout.CheckedIn
                         </td>
-                        <td class="itemValue">
+                        <td>
                             @checkout.LibraryCard.LibraryCardId
                         </td>
                     </tr>
@@ -112,10 +112,10 @@
                 @foreach (var hold in Model.CurrentHolds)
                 {
                     <tr>
-                        <td class="itemLabel">
+                        <td>
                             @hold.HoldPlaced
                         </td>
-                        <td class="itemValue">
+                        <td>
                             @hold.PatronName
                         </td>
                     </tr>

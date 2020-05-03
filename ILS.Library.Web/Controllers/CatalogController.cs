@@ -1,4 +1,5 @@
 ﻿using ILS.Library.Web.Models.Catalog;
+using ILS.Library.Web.Models.Checkouts;
 using ILS.Library.Web.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -56,7 +57,7 @@ namespace ILS.Library.Web.Controllers
         public IActionResult Detail(int id)
         {
             var asset = _libraryAssetService.GetById(id);
-            var currentHolds = _checkoutService.GetCurrentHolds(id)
+            var currentHolds = _checkoutService.GetCurrentHolds(id).ToList()
                 .Select(a => new AssetHoldModel
                 {
                     HoldPlaced = _checkoutService.GetCurrentHoldPlaced(a.HoldId).ToString("d"),
@@ -82,6 +83,73 @@ namespace ILS.Library.Web.Controllers
             };
 
             return View(model);
+        }
+
+        public IActionResult Checkout(int id)
+        {
+            var asset = _libraryAssetService.GetById(id);
+
+            var model = new CheckoutViewModel
+            {
+                AssetId = asset.LibraryAssetId,
+                Title = asset.Title,
+                ImageUrl = asset.ImageUrl,
+                LibraryCardId = "",
+                IsCheckedOut = _checkoutService.IsCheckedOut(id)
+            };
+
+            return View(model);
+        }
+
+        public IActionResult CheckIn(int id)
+        {
+            _checkoutService.CheckInItem(id);
+            return RedirectToAction("Detail", new { id });
+        }
+
+        public IActionResult PlaceHold(int id)
+        {
+            var asset = _libraryAssetService.GetById(id);
+
+            var model = new CheckoutViewModel
+            {
+                AssetId = asset.LibraryAssetId,
+                Title = asset.Title,
+                ImageUrl = asset.ImageUrl,
+                LibraryCardId = "",
+                IsCheckedOut = _checkoutService.IsCheckedOut(id),
+                HoldCount = _checkoutService.GetCurrentHolds(id).Count()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult MarkLost(int assetId)
+        {
+            _checkoutService.MarkLost(assetId);
+            return RedirectToAction("Detail", new { id = assetId });
+        }
+
+        [HttpPost]
+        public IActionResult MarkFound(int assetId)
+        {
+            _checkoutService.MarkFound(assetId);
+            return RedirectToAction("Detail", new { id = assetId });
+        }
+
+        [HttpPost]
+        public IActionResult PlaceCheckout(int assetId, int libraryCardId)
+        {
+            _checkoutService.CheckOutItem(assetId, libraryCardId);
+            return RedirectToAction("Detail", new { id = assetId });
+        }
+
+        [HttpPost]
+        public IActionResult PlaceHold(int assetId, int libraryCardId)
+        {
+            _checkoutService.PlaceHold(assetId, libraryCardId);
+            return RedirectToAction("Detail", new { id = assetId });
         }
 
         #endregion
