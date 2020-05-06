@@ -1,10 +1,25 @@
 ﻿@model ILS.Library.Web.Models.Catalog.IndexViewModel
 @{ 
-    ViewBag.Title = "Library Catalog Index";
+    ViewBag.Title = "Catalogue";
 }
 
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-white">
+                <li class="breadcrumb-item active" aria-current="page">
+                    <a asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Catalogue
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
 <div>
-    <h3>Library Catalog</h3>
+    <h3>Library Catalogue</h3>
     <div id="assetsTable">
         <table class="table table-condensed" id="catalogIndexTable">
             <thead>
