@@ -3,6 +3,24 @@
     ViewBag.Title = "Library Catalog Asset";
 }
 
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-white">
+                <li class="breadcrumb-item active" aria-current="page">
+                    <a asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a asp-controller="Catalog" asp-action="Index">Catalogue</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    @Model.Title
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
 <div class="container">
     <div class="page-header clearfix detailHeading">
         <h2 class="text-muted">View Library Item</h2>

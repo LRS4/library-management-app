@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ILS.Library.Web", "ILS.Libr
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ILS.Library.Database", "ILS.Library.Database\ILS.Library.Database.sqlproj", "{DE1DECBF-4532-41EB-A129-0C7FF7EFB2A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILS.Library.DataAccess.SecurityDb", "ILS.Library.DataAccess.SecurityDb\ILS.Library.DataAccess.SecurityDb.csproj", "{CB96565A-6B95-45BB-BB4A-689C4116AF16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ILS.Library.DataAccess.SecurityDb", "ILS.Library.DataAccess.SecurityDb\ILS.Library.DataAccess.SecurityDb.csproj", "{CB96565A-6B95-45BB-BB4A-689C4116AF16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -64,10 +64,22 @@
             </h3>
             <ul style="list-style-type: none; padding: 0px">
                 <li>
+                    <a asp-controller="Branch" asp-action="Index" title="View and manage Lakeview branches.">Branches</a>
+                </li>
+                <li>
                     <a href="https://www.goodreads.com/" target="_blank">Goodreads</a>
                 </li>
                 <li>
                     <a href="https://www.theguardian.com/books" target="_blank">Guardian Book Section</a>
+                </li>
+            </ul>
+            <hr />
+            <h3 class="font-weight-bold">
+                Admin
+            </h3>
+            <ul style="list-style-type: none; padding: 0px">
+                <li>
+                    <a asp-controller="Patron" asp-action="Index" title="View and manage library patrons.">Patrons</a>
                 </li>
             </ul>
         </div>

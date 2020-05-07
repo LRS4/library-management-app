@@ -1,0 +1,65 @@
+﻿@model ILS.Library.Web.Models.Patron.IndexViewModel
+@{ 
+    ViewBag.Title = "Patrons";
+}
+
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-white">
+                <li class="breadcrumb-item active" aria-current="page">
+                    <a asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Patrons
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<h3>@ViewBag.Title</h3>
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Profile</th>
+                    <th>Last Name</th>
+                    <th>First Name</th>
+                    <th>Library Card ID</th>
+                    <th>Overdue Fees</th>
+                    <th>Home Library</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var patron in Model.Patrons)
+                {
+                    <tr>
+                        <td>
+                            <a asp-controller="Patron" asp-action="Detail" asp-route-id="@patron.Id">
+                                View details
+                            </a>
+                        </td>
+                        <td>
+                            @patron.LastName
+                        </td>
+                        <td>
+                            @patron.FirstName
+                        </td>
+                        <td>
+                            @patron.LibraryCardId
+                        </td>
+                        <td>
+                            @patron.OverdueFees
+                        </td>
+                        <td>
+                            @patron.HomeLibraryBranch
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
