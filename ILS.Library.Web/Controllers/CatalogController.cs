@@ -3,6 +3,7 @@ using ILS.Library.Web.Models.Checkouts;
 using ILS.Library.Web.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
@@ -69,7 +70,7 @@ namespace ILS.Library.Web.Controllers
                 AssetId = id,
                 Title = asset.Title,
                 Year = asset.Year,
-                Cost = asset.Cost.ToString(),
+                Cost = Math.Round(asset.Cost, 2).ToString(),
                 Status = asset.Status.Name,
                 ImageUrl = asset.ImageUrl,
                 AuthorOrDirector = _libraryAssetService.GetAuthorOrDirector(id),

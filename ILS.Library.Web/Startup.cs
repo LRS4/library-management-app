@@ -34,6 +34,7 @@ namespace ILS.Library.Web
             services.AddScoped<ILibraryAssetService, LibraryAssetService>();
             services.AddScoped<ICheckoutService, CheckoutService>();
             services.AddScoped<IPatronService, PatronService>();
+            services.AddScoped<IBranchService, BranchService>();
 
             services.AddDbContext<ILSContext>(options =>
             {

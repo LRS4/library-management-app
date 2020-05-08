@@ -1,0 +1,52 @@
+﻿@model ILS.Library.Web.Models.Branch.IndexViewModel
+@{
+    ViewBag.Title = "Branches";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-white">
+                <li class="breadcrumb-item active" aria-current="page">
+                    <a asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Branches
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<h3>@ViewBag.Title</h3>
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Branch Name</th>
+                    <th>Open Now</th>
+                    <th>Number Of Assets</th>
+                    <th>Number Of Patrons</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var branch in Model.Branches)
+                {
+                    <tr>
+                        <td class="strongTd">
+                            <a asp-controller="Branch" asp-action="Detail" asp-route-branchId="@branch.Id">
+                                @branch.Name
+                            </a>
+                        </td>
+                        <td>@branch.IsOpen</td>
+                        <td>@branch.NumberOfAssets</td>
+                        <td>@branch.NumberOfPatrons</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
