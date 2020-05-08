@@ -122,3 +122,13 @@ INSERT INTO [Branch].[BranchHours](BranchId, CloseTime, [DayOfWeek], OpenTime) V
 (3, 22, 7, 5)
 
 PRINT N'Branch opening hours set up'
+
+PRINT N'Populating home page transcient notices'
+
+INSERT INTO [Comms].[Notices](Title, Content, ValidFrom, ValidTo) VALUES 
+(N'Opening hours have changed', 
+'The opening hours of Lake Shore Branch have changed.',
+DATEADD(day, 0, SYSDATETIMEOFFSET()),
+DATEADD(day, 1, SYSDATETIMEOFFSET()));
+
+PRINT N'Transcient notices populated'
