@@ -36,7 +36,7 @@
                     <tr class="assetRow">
                         <td class="">
                             <a asp-controller="Catalog" asp-action="Detail" asp-route-id="@asset.Id">
-                                <img src="@asset.ImageURL" class="imageCell" />
+                                <img src="@asset.ImageURL" id="@asset.Title.Replace(" ", "")" class="imageCell" />
                             </a>
                         </td>
                         <td class="">@asset.Title</td>
