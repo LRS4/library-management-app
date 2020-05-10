@@ -24,4 +24,8 @@
     <ProjectReference Include="..\ILS.Library.Web\ILS.Library.Web.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Integration Tests\WebDrivers\" />
+  </ItemGroup>
+
 </Project>

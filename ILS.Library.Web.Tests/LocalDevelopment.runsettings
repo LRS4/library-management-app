@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RunSettings>
+  <Parameter name="ApplicationRootUrl" value="https://localhost:44362/" />
+  <Parameter name="EdgeWebDriver" value="WebDrivers" />
+  <Parameter name="IEWebDriver" value="WebDrivers" />
+  <Parameter name="ChromeWebDriver" value="WebDrivers" />
+  <Parameter name="GeckoWebDriver" value="WebDrivers" />
+  <Parameter name="WaitTimeout" value="30" />
+</RunSettings>
