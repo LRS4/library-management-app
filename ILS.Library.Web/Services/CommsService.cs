@@ -28,9 +28,11 @@ namespace ILS.Library.Web.Services
             _context.SaveChanges();
         }
 
-        public IEnumerable<Notices> GetAllNotices()
+        public IEnumerable<Notices> GetAllValidNotices()
         {
-            return _context.Notices;
+            var now = DateTime.Now;
+            return _context.Notices
+                .Where(notice => notice.ValidTo > now && notice.ValidFrom < now);
         }
         #endregion
     }

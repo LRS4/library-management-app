@@ -8,7 +8,7 @@ namespace ILS.Library.Web.Services.Interfaces
 {
     public interface ICommsService
     {
-        IEnumerable<Notices> GetAllNotices();
+        IEnumerable<Notices> GetAllValidNotices();
 
         void Add(Notices newNotice);
     }

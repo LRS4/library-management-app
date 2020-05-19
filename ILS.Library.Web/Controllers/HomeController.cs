@@ -32,15 +32,7 @@ namespace ILS.Library.Web.Controllers
         #region Routes
         public IActionResult Index()
         {
-            var notices = _commsService.GetAllNotices().ToList()
-                .Select(notice => new NoticesModel()
-                {
-                    Title = notice.Title,
-                    Content = notice.Content,
-                    ValidFrom = notice.ValidFrom,
-                    ValidTo = notice.ValidTo
-                });
-
+            var notices = BuildNoticesModel();
             var model = new IndexViewModel
             {
                 Notices = notices
@@ -58,6 +50,20 @@ namespace ILS.Library.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        #endregion
+
+        #region Private methods
+        private IEnumerable<NoticesModel> BuildNoticesModel()
+        {
+            return _commsService.GetAllValidNotices().ToList()
+                .Select(notice => new NoticesModel()
+                {
+                    Title = notice.Title,
+                    Content = notice.Content,
+                    ValidFrom = notice.ValidFrom,
+                    ValidTo = notice.ValidTo
+                });
         }
         #endregion
     }

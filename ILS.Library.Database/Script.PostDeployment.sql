@@ -129,6 +129,10 @@ INSERT INTO [Comms].[Notices](Title, Content, ValidFrom, ValidTo) VALUES
 (N'Opening hours have changed', 
 'The opening hours of Lake Shore Branch have changed.',
 DATEADD(day, 0, SYSDATETIMEOFFSET()),
-DATEADD(day, 1, SYSDATETIMEOFFSET()));
+DATEADD(day, 1, SYSDATETIMEOFFSET())),
+(N'World Book Day!', 
+'Remember to visit on World Book Day. Lots of activites planned!',
+DATEADD(day, -10, SYSDATETIMEOFFSET()),
+DATEADD(day, -1, SYSDATETIMEOFFSET()));
 
 PRINT N'Transcient notices populated'
