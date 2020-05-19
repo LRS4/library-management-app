@@ -35,6 +35,7 @@ namespace ILS.Library.Web
             services.AddScoped<ICheckoutService, CheckoutService>();
             services.AddScoped<IPatronService, PatronService>();
             services.AddScoped<IBranchService, BranchService>();
+            services.AddScoped<ICommsService, CommsService>();
 
             services.AddDbContext<ILSContext>(options =>
             {
