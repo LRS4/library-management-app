@@ -7,6 +7,7 @@ namespace ILS.Library.DataAccess.SecurityDb.Entities.Comms
     [Table("Notices", Schema = "Comms")]
     public partial class Notices
     {
+        [Column("NoticeId")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int NoticeId { get; set; }
         public string Title { get; set; }

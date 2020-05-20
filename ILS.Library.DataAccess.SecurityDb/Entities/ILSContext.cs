@@ -200,7 +200,7 @@ namespace ILS.Library.DataAccess.SecurityDb.Entities
 
             modelBuilder.Entity<Notices>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.NoticeId);
 
                 entity.ToTable("Notices", "Comms");
 
