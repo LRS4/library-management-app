@@ -25,7 +25,19 @@ namespace ILS.Library.Web.Controllers
         #region Route actions
         public IActionResult Index()
         {
-            return View();
+            var notices = _commsService.GetAllNotices().ToList()
+                .Select(notice => new NoticeModel
+                {
+                    Id = notice.NoticeId,
+                    Title = notice.Title,
+                    Content = notice.Content,
+                    ValidFrom = notice.ValidFrom,
+                    ValidTo = notice.ValidTo
+                });
+
+            var model = new IndexViewModel { Notices = notices };
+            
+            return View(model);
         }
 
         [HttpGet]
@@ -47,7 +59,38 @@ namespace ILS.Library.Web.Controllers
 
             _commsService.Add(newNotice);
 
-            return RedirectToAction("Add");
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet("Notice/Edit/{noticeId}")]
+        public IActionResult Edit(int noticeId)
+        {
+            var notice = _commsService.GetNoticeById(noticeId);
+            var model = new NoticeModel
+            {
+                Id = notice.NoticeId,
+                Title = notice.Title,
+                Content = notice.Content,
+                ValidFrom = notice.ValidFrom,
+                ValidTo = notice.ValidTo
+            };    
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(NoticeModel updatedNotice)
+        {
+            var noticeId = updatedNotice.Id;
+            _commsService.Edit(noticeId, updatedNotice);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet("Notice/Delete/{noticeId}")]
+        public IActionResult Delete(int noticeId)
+        {
+            _commsService.Remove(noticeId);
+            return RedirectToAction("Index");
         }
         #endregion
     }

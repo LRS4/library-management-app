@@ -13,14 +13,7 @@
                 <div class="col-12">
                     @foreach (var notice in Model.Notices)
                     {
-                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                        <strong>@notice.Title</strong> 
-                        <br />
-                        @notice.Content
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                        <partial name="_Notices" model="notice" />
                     }
                 </div>
             </div>
@@ -105,7 +98,7 @@
                     <a asp-controller="Patron" asp-action="Index" title="View and manage library patrons.">Patrons</a>
                 </li>
                 <li>
-                    <a asp-controller="Notice" asp-action="Add" title="Manage notices for the home page.">Notices</a>
+                    <a asp-controller="Notice" asp-action="Index" title="Manage notices for the home page.">Notices</a>
                 </li>
             </ul>
         </div>

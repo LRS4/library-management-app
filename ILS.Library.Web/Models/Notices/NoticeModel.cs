@@ -7,6 +7,7 @@ namespace ILS.Library.Web.Models.Notices
 {
     public class NoticeModel
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTimeOffset ValidFrom { get; set; }

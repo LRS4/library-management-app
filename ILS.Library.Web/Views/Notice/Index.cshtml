@@ -1,8 +1,82 @@
-﻿
+﻿@model ILS.Library.Web.Models.Notices.IndexViewModel;
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Notices";
 }
 
-<h1>Notices</h1>
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-white">
+                <li class="breadcrumb-item active" aria-current="page">
+                    <a asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Notices
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
 
+<div class="row">
+    <div class="col-6">
+        <h3>@ViewBag.Title</h3>
+    </div>
+    <div class="col-6">
+        <a class="btn btn-outline-success btn-sm float-right"
+           asp-controller="Notice"
+           asp-action="Add">
+            Add new notice
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <form>
+            <table class="table table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>Valid From</th>
+                        <th>Valid To</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var notice in Model.Notices)
+                    {
+                        <tr>
+                            <td>
+                                @notice.Title
+                            </td>
+                            <td>
+                                @notice.Content
+                            </td>
+                            <td>
+                                @notice.ValidFrom.DateTime
+                            </td>
+                            <td>
+                                @notice.ValidTo.DateTime
+                            </td>
+                            <td>
+                                <a class="btn btn-link"
+                                   href="/Notice/Edit/@notice.Id">
+                                    Edit notice
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-link"
+                                   href="/Notice/Delete/@notice.Id">
+                                    Delete notice
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
