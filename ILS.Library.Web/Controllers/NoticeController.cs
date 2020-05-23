@@ -49,17 +49,24 @@ namespace ILS.Library.Web.Controllers
         [HttpPost]
         public IActionResult Add(NoticeModel notice)
         {
-            var newNotice = new Notices
+            if (ModelState.IsValid)
             {
-                Title = notice.Title,
-                Content = notice.Content,
-                ValidFrom = notice.ValidFrom,
-                ValidTo = notice.ValidTo
-            };
+                var newNotice = new Notices
+                {
+                    Title = notice.Title,
+                    Content = notice.Content,
+                    ValidFrom = notice.ValidFrom,
+                    ValidTo = notice.ValidTo
+                };
 
-            _commsService.Add(newNotice);
+                _commsService.Add(newNotice);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet("Notice/Edit/{noticeId}")]
