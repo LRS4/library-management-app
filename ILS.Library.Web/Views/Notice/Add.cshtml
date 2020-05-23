@@ -1,4 +1,4 @@
-﻿
+﻿@model ILS.Library.Web.Models.Notices.NoticeModel;
 @{
     ViewData["Title"] = "Add";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,31 +6,34 @@
 
 <h1>Add a notice</h1>
 
-<form method="post">
+<form method="post" asp-controller="Notice" asp-action="Add">
     <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" name="title" id="Title">
+        <label asp-for="Title">Title</label>
+        <input type="text" class="form-control" asp-for="Title">
     </div>
     <div class="form-group">
-        <label for="content">Content</label>
-        <input type="text" class="form-control" name="content" id="Content">
+        <label asp-for="Content">Content</label>
+        <input type="text" class="form-control" asp-for="Content">
     </div>
     <div class="form-group row">
-        <label for="example-datetime-local-input" class="col-2 col-form-label">Valid From</label>
+        <label asp-for="ValidFrom" class="col-2 col-form-label">Valid From</label>
         <div class="col-10">
-            <input class="form-control" type="datetime-local" value="@DateTimeOffset.Now" name="ValidFrom" id="valid-from">
+            <input class="form-control" 
+                   type="datetime-local" 
+                   value="@string.Format("{0:yyyy-MM-dd}T{0:HH:mm}", DateTime.Now.ToLocalTime())" 
+                   asp-for="ValidFrom">
         </div>
     </div>
     <div class="form-group row">
-        <label for="example-datetime-local-input" class="col-2 col-form-label">Valid To</label>
+        <label asp-for="ValidTo" class="col-2 col-form-label">Valid To</label>
         <div class="col-10">
-            <input class="form-control" type="datetime-local" value="@DateTimeOffset.Now" name="ValidTo" id="valid-to">
+            <input class="form-control" 
+                   type="datetime-local" 
+                   value="@string.Format("{0:yyyy-MM-dd}T{0:HH:mm}", DateTimeOffset.Now.ToLocalTime())" 
+                   asp-for="ValidTo">
         </div>
     </div>
-    <button class="btn btn-primary"
-            type="submit"
-            asp-controller="Notice"
-            asp-action="Add">
+    <button class="btn btn-primary" type="submit">
         Add notice
     </button>
 </form>

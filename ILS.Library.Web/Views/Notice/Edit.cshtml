@@ -6,31 +6,28 @@
 
 <h1>Update notice</h1>
 
-<form method="post">
+<form method="post" asp-controller="Notice" asp-action="Edit">
     <div class="form-group">
-        <label for="title">Title</label>
+        <label asp-for="Title">Title</label>
         <input type="text" 
-               class="form-control" 
-               name="title" 
+               class="form-control"  
                value="@Model.Title" 
-               id="Title">
+               asp-for="Title">
     </div>
     <div class="form-group">
-        <label for="content">Content</label>
+        <label asp-for="Content">Content</label>
         <input type="text" 
                class="form-control" 
-               name="content" 
                value="@Model.Content" 
-               id="Content">
+               asp-for="Content">
     </div>
     <div class="form-group row">
-        <label for="example-datetime-local-input" class="col-2 col-form-label">Valid From</label>
+        <label asp-for="ValidFrom" class="col-2 col-form-label">Valid From</label>
         <div class="col-10">
             <input class="form-control" 
                    type="datetime-local" 
-                   value="" 
-                   name="ValidFrom" 
-                   id="valid-from"
+                   value="@string.Format("{0:yyyy-MM-dd}T{0:HH:mm}", Model.ValidFrom)" 
+                   asp-for="ValidFrom"
                    required>
         </div>
     </div>
@@ -39,16 +36,12 @@
         <div class="col-10">
             <input class="form-control" 
                    type="datetime-local" 
-                   value="" 
-                   name="ValidTo" 
-                   id="valid-to"
+                   value="@string.Format("{0:yyyy-MM-dd}T{0:HH:mm}", Model.ValidTo)" 
+                   asp-for="ValidTo"
                    required>
         </div>
     </div>
-    <button class="btn btn-primary"
-            type="submit"
-            asp-controller="Notice"
-            asp-action="Edit">
+    <button class="btn btn-primary" type="submit">
         Update notice
     </button>
 </form>
