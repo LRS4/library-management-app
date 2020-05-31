@@ -97,6 +97,12 @@ namespace ILS.Library.Web.Services
                 asset.Author :
                 asset.Director;
         }
+
+        public Status GetStatusById(int id)
+        {
+            return _context.Status
+                .FirstOrDefault(s => s.StatusId == id);
+        }
     }
     #endregion
 }

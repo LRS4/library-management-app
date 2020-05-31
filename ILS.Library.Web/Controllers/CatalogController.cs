@@ -1,4 +1,6 @@
-﻿using ILS.Library.Web.Models.Catalog;
+﻿using ILS.Library.DataAccess.SecurityDb.Entities.Asset;
+using ILS.Library.Web.Enums;
+using ILS.Library.Web.Models.Catalog;
 using ILS.Library.Web.Models.Checkouts;
 using ILS.Library.Web.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +18,7 @@ namespace ILS.Library.Web.Controllers
 
         private ILibraryAssetService _libraryAssetService;
         private ICheckoutService _checkoutService;
+        private IBranchService _branchService;
 
         #endregion
 
@@ -23,10 +26,12 @@ namespace ILS.Library.Web.Controllers
 
         public CatalogController(
             ILibraryAssetService libraryAssetService,
-            ICheckoutService checkoutService)
+            ICheckoutService checkoutService,
+            IBranchService branchService)
         {
             _libraryAssetService = libraryAssetService;
             _checkoutService = checkoutService;
+            _branchService = branchService;
         }
 
         #endregion
@@ -58,6 +63,7 @@ namespace ILS.Library.Web.Controllers
         public IActionResult Detail(int id)
         {
             var asset = _libraryAssetService.GetById(id);
+
             var currentHolds = _checkoutService.GetCurrentHolds(id).ToList()
                 .Select(a => new AssetHoldModel
                 {
@@ -65,7 +71,7 @@ namespace ILS.Library.Web.Controllers
                     PatronName = _checkoutService.GetCurrentHoldPatronName(a.HoldId)
                 });
 
-            var model = new AssetDetailViewModel
+            var model = new AssetDetailModel
             {
                 AssetId = id,
                 Title = asset.Title,
@@ -84,6 +90,20 @@ namespace ILS.Library.Web.Controllers
             };
 
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(AssetModel asset)
+        {
+            var newAsset = createNewLibraryAsset(asset);
+            _libraryAssetService.Add(newAsset);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Checkout(int id)
@@ -156,6 +176,35 @@ namespace ILS.Library.Web.Controllers
         #endregion
 
         #region Private methods
+        public LibraryAsset createNewLibraryAsset(AssetModel asset)
+        {
+            var discriminator = Enum.GetName(typeof(Discriminator), asset.Discriminator);
+            var newAsset = new LibraryAsset
+            {
+                Title = asset.Title,
+                Discriminator = discriminator,
+                DeweyIndex = asset.DeweyCallNumber,
+                NumberOfCopies = asset.NumberOfCopies,
+                Year = asset.Year,
+                ISBN = asset.ISBN,
+                Cost = asset.Cost,
+                ImageUrl = asset.ImageUrl,
+                Location = _branchService.Get(asset.CurrentLocation),
+                Status = _libraryAssetService.GetStatusById(2)
+            };
+
+            if (discriminator == "Book")
+            {
+                newAsset.Author = asset.AuthorOrDirector;
+            }
+            else
+            {
+                newAsset.Director = asset.AuthorOrDirector;
+            }
+
+            return newAsset;
+        }
+
         #endregion
     }
 }

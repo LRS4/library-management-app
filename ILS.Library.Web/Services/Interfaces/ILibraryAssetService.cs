@@ -20,5 +20,6 @@ namespace ILS.Library.Web.Services.Interfaces
         string GetISBN(int id);
 
         BranchDetails GetCurrentLocation(int id);
+        Status GetStatusById(int id);
     }
 }
