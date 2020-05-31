@@ -8,6 +8,7 @@ namespace ILS.Library.Web.Models.Catalog
 {
     public class AssetModel
     {
+        public int AssetId { get; set; }
         [Required]
         public string Title { get; set; }
         public string AuthorOrDirector { get; set; }
