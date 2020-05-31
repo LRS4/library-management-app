@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ILS.Library.Web.Models.Catalog
 {
-    public class AssetDetailViewModel
+    public class AssetDetailModel
     {
         public int AssetId { get; set; }
         public string Title { get; set; }
