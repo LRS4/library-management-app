@@ -1,7 +1,8 @@
 ﻿@model ILS.Library.Web.Models.Catalog.AssetModel
 @using ILS.Library.Web.Enums
+@using System 
 @{
-    ViewBag.Title = "Add Library Item";
+    ViewBag.Title = "Edit Library Item";
 }
 
 <environment include="Development, Production">
@@ -9,10 +10,9 @@
     <script src="~/js/catalog.js"></script>
 </environment>
 
+<h1>Update a library item</h1>
 
-<h1>Add a library item</h1>
-
-<form method="post" asp-controller="Catalog" asp-action="Add">
+<form method="post" asp-controller="Catalog" asp-action="Edit">
     <div class="form-group">
         <label asp-for="Title"></label>
         <input asp-for="Title" class="form-control" />
@@ -32,7 +32,7 @@
         <span asp-validation-for="CurrentLocation" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Discriminator"></label>
+        <label asp-for="Discriminator">Type</label>
         <select asp-for="Discriminator"
                 asp-items="Html.GetEnumSelectList<Discriminator>()"
                 class="custom-select mr-sm-2">
@@ -40,7 +40,7 @@
         <span asp-validation-for="Discriminator" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="NumberOfCopies"></label>
+        <label asp-for="NumberOfCopies">Number Of Copies</label>
         <input asp-for="NumberOfCopies" class="form-control" />
         <span asp-validation-for="NumberOfCopies" class="text-danger"></span>
     </div>
@@ -55,7 +55,7 @@
         <span asp-validation-for="ISBN" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="DeweyCallNumber"></label>
+        <label asp-for="DeweyCallNumber">Dewey Index Number</label>
         <input asp-for="DeweyCallNumber" class="form-control" />
         <span asp-validation-for="DeweyCallNumber" class="text-danger"></span>
     </div>
@@ -68,15 +68,16 @@
         <div class="col-8">
             <div class="form-group">
                 <label asp-for="ImageUrl">Image Link</label>
-                <input asp-for="ImageUrl" value="/images/default.png" class="form-control" />
+                <input asp-for="ImageUrl" value="@Model.ImageUrl" class="form-control" />
                 <span asp-validation-for="ImageUrl" class="text-danger"></span>
             </div>
         </div>
         <div class="col-4 text-center">
-            <img src="/images/default.png" id="imagePreview" class="imageCell center" hidden />
+            <img src="@Model.ImageUrl" id="imagePreview" class="imageCell center" hidden />
         </div>
     </div>
+    <input type="hidden" asp-for="AssetId" />
     <button type="submit" class="btn btn-primary">
-        Add item
+        Update item
     </button>
 </form>
