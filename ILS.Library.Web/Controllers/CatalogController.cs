@@ -106,6 +106,27 @@ namespace ILS.Library.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Edit(int id)
+        {
+            var asset = _libraryAssetService.GetById(id);
+
+            var model = new AssetModel
+            {
+                AssetId = id,
+                Title = asset.Title,
+                Year = asset.Year,
+                Cost = Math.Round(asset.Cost, 2),
+                NumberOfCopies = asset.NumberOfCopies,
+                ImageUrl = asset.ImageUrl,
+                AuthorOrDirector = _libraryAssetService.GetAuthorOrDirector(id),
+                CurrentLocation = _libraryAssetService.GetCurrentLocation(id).BranchId,
+                DeweyCallNumber = _libraryAssetService.GetDeweyIndex(id),
+                ISBN = _libraryAssetService.GetISBN(id)
+            };
+
+            return View(model);
+        }
+
         public IActionResult Checkout(int id)
         {
             var asset = _libraryAssetService.GetById(id);
