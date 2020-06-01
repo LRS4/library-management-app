@@ -12,6 +12,7 @@ namespace ILS.Library.Web.Models.Catalog
         public int AssetId { get; set; }
 
         [Required(ErrorMessage = "Title is required.")]
+        [MaxLength(50)]
         public string Title { get; set; }
 
         [Required(ErrorMessage = "Author or Director is required.")]
@@ -26,11 +27,13 @@ namespace ILS.Library.Web.Models.Catalog
         public int Year { get; set; }
 
         [Required(ErrorMessage = "ISBN is required.")]
-        [StringLength(13)]
+        [StringLength(13, MinimumLength = 13)]
         public string ISBN { get; set; }
 
         [Required(ErrorMessage = "Dewey Index is required.")]
         [Display(Name = "Dewey Index Number")]
+        [RegularExpression("^([0-9][0-9][0-9]).([0-9][0-9][0-9])$",
+            ErrorMessage = "Dewey Index must follow the pattern '123.123'")]
         public string DeweyCallNumber { get; set; }
 
         [Required(ErrorMessage = "Cost is required.")]
