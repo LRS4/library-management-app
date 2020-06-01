@@ -101,9 +101,16 @@ namespace ILS.Library.Web.Controllers
         [HttpPost]
         public IActionResult Add(AssetModel asset)
         {
-            var newAsset = createNewLibraryAsset(asset);
-            _libraryAssetService.Add(newAsset);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                var newAsset = createNewLibraryAsset(asset);
+                _libraryAssetService.Add(newAsset);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(asset);
+            }
         }
 
         public IActionResult Edit(int id)
@@ -197,7 +204,7 @@ namespace ILS.Library.Web.Controllers
         #endregion
 
         #region Private methods
-        public LibraryAsset createNewLibraryAsset(AssetModel asset)
+        private LibraryAsset createNewLibraryAsset(AssetModel asset)
         {
             var discriminator = Enum.GetName(typeof(Discriminator), asset.Discriminator);
             var newAsset = new LibraryAsset
