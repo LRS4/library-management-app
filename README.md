@@ -33,7 +33,7 @@ Main focus of the application is to implement:
 * `Add-Migration [name]`
 * `Update-Database`
 
-# References
+## References
 
 * [ASP.NET Core Tutorials](https://www.youtube.com/watch?v=4IgC2Q5-yDE&list=PL6n9fhu94yhVkdrusLaQsfERmL_Jh4XmU)
 * [Power BI Embedded Playground](https://microsoft.github.io/PowerBI-JavaScript/demo/v2-demo/index.html)
