@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
+using ILS.Library.Web.Services.Interfaces;
 
 namespace ILS.Library.Web.Tests
 {
@@ -18,7 +19,8 @@ namespace ILS.Library.Web.Tests
         {
             // Arrange
             var logger = Substitute.For<ILogger<HomeController>>();
-            var homeController = new HomeController(logger);
+            var commsService = Substitute.For<ICommsService>();
+            var homeController = new HomeController(logger, commsService);
 
             // Act
             var actionResult = homeController.Index();

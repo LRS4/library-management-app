@@ -20,7 +20,8 @@ namespace ILS.Library.Web.Tests
             // Arrange
             var libraryAssetService = Substitute.For<ILibraryAssetService>();
             var checkoutService = Substitute.For<ICheckoutService>();
-            var catalogController = new CatalogController(libraryAssetService, checkoutService);
+            var branchService = Substitute.For<IBranchService>();
+            var catalogController = new CatalogController(libraryAssetService, checkoutService, branchService);
 
             // Act
             var actionResult = catalogController.Index();
