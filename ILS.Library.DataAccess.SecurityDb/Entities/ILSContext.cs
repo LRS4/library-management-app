@@ -3,12 +3,13 @@ using ILS.Library.DataAccess.SecurityDb.Entities.Asset;
 using ILS.Library.DataAccess.SecurityDb.Entities.Branch;
 using ILS.Library.DataAccess.SecurityDb.Entities.Comms;
 using ILS.Library.DataAccess.SecurityDb.Entities.Users;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ILS.Library.DataAccess.SecurityDb.Entities
 {
-    public partial class ILSContext : DbContext
+    public partial class ILSContext : IdentityDbContext
     {
         #region Constructors
 
@@ -51,6 +52,8 @@ namespace ILS.Library.DataAccess.SecurityDb.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<BranchDetails>(entity =>
             {
                 entity.HasKey(e => e.BranchId);
