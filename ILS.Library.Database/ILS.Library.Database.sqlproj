@@ -87,4 +87,7 @@
   <ItemGroup>
     <None Include="LocalDevelopment.publish.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Script.PreDeployment.sql" />
+  </ItemGroup>
 </Project>
