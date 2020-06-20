@@ -29,6 +29,7 @@ namespace ILS.Library.Web.Controllers
         #endregion
 
         #region Route actions
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -60,7 +61,39 @@ namespace ILS.Library.Web.Controllers
                 }
             }
 
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await signInManager.PasswordSignInAsync(model.Email, model.Password,
+                                                                     model.RememberMe, false);
+
+                if (result.Succeeded)
+                {
+                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+
+                ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+            }
+
+            return View(model);
         }
 
         [HttpPost]
