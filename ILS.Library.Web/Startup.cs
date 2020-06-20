@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ILS.Library.DataAccess.SecurityDb.Entities;
+using ILS.Library.DataAccess.SecurityDb.Entities.Users;
 using ILS.Library.Web.Services;
 using ILS.Library.Web.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -43,7 +44,7 @@ namespace ILS.Library.Web
                 options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ILS");
             });
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 10;
                 options.Password.RequireNonAlphanumeric = false;

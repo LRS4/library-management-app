@@ -89,7 +89,7 @@ namespace ILS.Library.Web.Services
 
             var cardId = checkout.LibraryCard.LibraryCardId;
 
-            var patron = _context.Patron
+            var patron = _context.ApplicationUser
                 .Include(p => p.LibraryCard)
                 .FirstOrDefault(p => p.LibraryCardId == cardId);
 
