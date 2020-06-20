@@ -4,14 +4,16 @@ using ILS.Library.DataAccess.SecurityDb.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ILS.Library.DataAccess.SecurityDb.Migrations
 {
     [DbContext(typeof(ILSContext))]
-    partial class ILSContextModelSnapshot : ModelSnapshot
+    [Migration("20200620181858_Extend_IdentityUser")]
+    partial class Extend_IdentityUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
