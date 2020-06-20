@@ -75,6 +75,12 @@ namespace ILS.Library.Web.Services
             
             return currentTimeHour < daysHours.CloseTime && currentTimeHour > daysHours.OpenTime;
         }
+
+        public void AddLibraryCard(LibraryCard newCard)
+        {
+            _context.Add(newCard);
+            _context.SaveChanges();
+        }
         #endregion
 
         #region Private methods

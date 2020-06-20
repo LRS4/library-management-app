@@ -16,6 +16,7 @@ namespace ILS.Library.Web.Services.Interfaces
         IEnumerable<string> GetBranchHours(int branchId);
         BranchDetails Get(int branchId);
         void Add(BranchDetails newBranch);
+        void AddLibraryCard(LibraryCard newCard);
         bool IsBranchOpen(int branchId);
 
     }
