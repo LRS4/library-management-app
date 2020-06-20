@@ -43,8 +43,11 @@ namespace ILS.Library.Web
                 options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ILS");
             });
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                    .AddEntityFrameworkStores<ILSContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 10;
+                options.Password.RequireNonAlphanumeric = false;
+            }).AddEntityFrameworkStores<ILSContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
