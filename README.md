@@ -25,12 +25,14 @@ Main focus of the application is to implement:
 
 ## Project setup
 * Publish ILS database project to (localdb)MSSQLLocalDB
-* Update database with EF Core migrations for Identity
+* Update-Database with migrations for Identity tables
+* Run stored procedure PopulateReferenceTables
 * Run application in Visual Studio on localhost
 
 ## Entity Framework Commands
 
 * `Add-Migration [name]`
+* `Remove-Migration`
 * `Update-Database`
 
 ## References
