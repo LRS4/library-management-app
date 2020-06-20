@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ILS.Library.DataAccess.SecurityDb.Entities
 {
-    public partial class ILSContext : IdentityDbContext
+    public partial class ILSContext : IdentityDbContext<ApplicationUser>
     {
         #region Constructors
 
@@ -35,6 +35,7 @@ namespace ILS.Library.DataAccess.SecurityDb.Entities
         public virtual DbSet<LibraryCard> LibraryCard { get; set; }
         public virtual DbSet<Notices> Notices { get; set; }
         public virtual DbSet<Patron> Patron { get; set; }
+        public virtual DbSet<ApplicationUser> ApplicationUser { get; set; }
         public virtual DbSet<Status> Status { get; set; }
 
         #endregion
