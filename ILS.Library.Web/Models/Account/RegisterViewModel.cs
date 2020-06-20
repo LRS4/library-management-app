@@ -17,6 +17,26 @@ namespace ILS.Library.Web.Models.Account
         public string Email { get; set; }
 
         [Required]
+        public string Address { get; set; }
+
+        [Required]
+        public string DateOfBirth { get; set; }
+
+        [Required]
+        public string FirstName { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
+
+        public string Gender { get; set; }
+
+        [Required]
+        public string TelephoneNumber { get; set; }
+
+        [Required]
+        public int Branch { get; set; }
+
+        [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
