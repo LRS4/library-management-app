@@ -12,6 +12,7 @@ namespace ILS.Library.DataAccess.SecurityDb.Entities.Branch
             BranchHours = new HashSet<BranchHours>();
             LibraryAsset = new HashSet<LibraryAsset>();
             Patron = new HashSet<Patron>();
+            ApplicationUser = new HashSet<ApplicationUser>();
         }
 
         public int BranchId { get; set; }
@@ -25,5 +26,6 @@ namespace ILS.Library.DataAccess.SecurityDb.Entities.Branch
         public virtual ICollection<BranchHours> BranchHours { get; set; }
         public virtual ICollection<LibraryAsset> LibraryAsset { get; set; }
         public virtual ICollection<Patron> Patron { get; set; }
+        public virtual ICollection<ApplicationUser> ApplicationUser { get; set; }
     }
 }

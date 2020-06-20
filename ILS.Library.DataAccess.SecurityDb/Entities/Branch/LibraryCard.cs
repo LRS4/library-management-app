@@ -14,6 +14,7 @@ namespace ILS.Library.DataAccess.SecurityDb.Entities.Branch
             Hold = new HashSet<Hold>();
             LibraryAsset = new HashSet<LibraryAsset>();
             Patron = new HashSet<Patron>();
+            ApplicationUser = new HashSet<ApplicationUser>();
         }
 
         public int LibraryCardId { get; set; }
@@ -25,5 +26,6 @@ namespace ILS.Library.DataAccess.SecurityDb.Entities.Branch
         public virtual ICollection<Hold> Hold { get; set; }
         public virtual ICollection<LibraryAsset> LibraryAsset { get; set; }
         public virtual ICollection<Patron> Patron { get; set; }
+        public virtual ICollection<ApplicationUser> ApplicationUser { get; set; }
     }
 }
