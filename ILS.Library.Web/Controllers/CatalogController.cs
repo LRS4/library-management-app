@@ -3,6 +3,7 @@ using ILS.Library.Web.Enums;
 using ILS.Library.Web.Models.Catalog;
 using ILS.Library.Web.Models.Checkouts;
 using ILS.Library.Web.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace ILS.Library.Web.Controllers
 {
+    [Authorize]
     public class CatalogController : Controller
     {
         #region Private properties
@@ -38,6 +40,7 @@ namespace ILS.Library.Web.Controllers
 
         #region Routes
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var assetModels = _libraryAssetService.GetAll().ToList();
@@ -60,6 +63,7 @@ namespace ILS.Library.Web.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
         public IActionResult Detail(int id)
         {
             var asset = _libraryAssetService.GetById(id);
@@ -113,6 +117,7 @@ namespace ILS.Library.Web.Controllers
             }
         }
 
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             var asset = _libraryAssetService.GetById(id);
@@ -134,6 +139,8 @@ namespace ILS.Library.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        [Authorize]
         public IActionResult Checkout(int id)
         {
             var asset = _libraryAssetService.GetById(id);
