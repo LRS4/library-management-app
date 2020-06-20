@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ILS.Library.DataAccess.SecurityDb.Entities.Branch;
+using ILS.Library.DataAccess.SecurityDb.Entities.Users;
 using ILS.Library.Web.Models.Account;
+using ILS.Library.Web.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,18 +16,21 @@ namespace ILS.Library.Web.Controllers
     {
         #region Private properties
 
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly IBranchService _branchService;
 
         #endregion
 
         #region Constructor
 
-        public AccountController(UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+        public AccountController(UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            IBranchService branchService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            _branchService = branchService;
         }
 
         #endregion
@@ -42,10 +48,26 @@ namespace ILS.Library.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser
+                var libraryCard = new LibraryCard
+                {
+                    Created = DateTime.Now,
+                    Fees = 0
+                };
+
+                _branchService.AddLibraryCard(libraryCard);
+
+                var user = new ApplicationUser
                 {
                     UserName = model.Email,
-                    Email = model.Email
+                    Email = model.Email,
+                    Address = model.Address,
+                    DateOfBirth = model.DateOfBirth,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Gender = model.Gender,
+                    TelephoneNumber = model.TelephoneNumber,
+                    HomeLibraryBranch = _branchService.Get(model.Branch),
+                    LibraryCard = libraryCard
                 };
 
                 var result = await userManager.CreateAsync(user, model.Password);
