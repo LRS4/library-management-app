@@ -61,6 +61,8 @@
     <Folder Include="Branch" />
     <Folder Include="Comms" />
     <Folder Include="Security" />
+    <Folder Include="Config" />
+    <Folder Include="Config\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Users\Patron.sql" />
@@ -77,6 +79,7 @@
     <Build Include="Asset\LibraryAsset.sql" />
     <Build Include="Asset\Hold.sql" />
     <Build Include="Asset\CheckoutHistory.sql" />
+    <Build Include="Config\Stored Procedures\PopulateReferenceTables.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ILS.Library.Database.refactorlog" />
