@@ -72,7 +72,7 @@ namespace ILS.Library.Web.Services
             // ? is null conditional
             var cardId = hold?.LibraryCard.LibraryCardId;
 
-            var patron = _context.Patron
+            var patron = _context.ApplicationUser
                 .Include(p => p.LibraryCard)
                 .FirstOrDefault(p => p.LibraryCard.LibraryCardId == cardId);
 
