@@ -1,4 +1,4 @@
-﻿@model ILS.Library.Web.Models.Home.IndexViewModel 
+﻿@model ILS.Library.Web.Models.Home.IndexViewModel;
 
 @{
     ViewData["Title"] = "Home";
@@ -89,18 +89,24 @@
                     <a href="https://www.theguardian.com/books" target="_blank">Guardian Book Section</a>
                 </li>
             </ul>
-            <hr />
-            <h3 class="font-weight-bold">
-                Admin
-            </h3>
-            <ul style="list-style-type: none; padding: 0px">
-                <li>
-                    <a asp-controller="Patron" asp-action="Index" title="View and manage library patrons.">Patrons</a>
-                </li>
-                <li>
-                    <a asp-controller="Notice" asp-action="Index" title="Manage notices for the home page.">Notices</a>
-                </li>
-            </ul>
+            @if (Context.User.Identity.IsAuthenticated && Context.User.IsInRole("Admin"))
+            {
+                <hr />
+                <h3 class="font-weight-bold">
+                    Admin
+                </h3>
+                <ul style="list-style-type: none; padding: 0px">
+                    <li>
+                        <a asp-controller="Patron" asp-action="Index" title="Manage library users.">Users</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Administration" asp-action="ListRoles" title="Manage user roles.">Roles</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Notice" asp-action="Index" title="Manage notices for the home page.">Notices</a>
+                    </li>
+                </ul>
+            }
         </div>
     </div>
 </div>
