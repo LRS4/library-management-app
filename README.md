@@ -9,6 +9,7 @@ Main focus of the application is to implement:
 * Database first and migration approaches
 * Service layer / Repository pattern
 * Identity user authentication
+* Roles and claims based authorisation
 * Authorised routes for admin users
 * Publish to Azure App Service
 * Azure Data Factory ETL 
