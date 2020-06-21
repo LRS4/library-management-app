@@ -12,13 +12,20 @@ namespace ILS.Library.Web.Controllers
     [Authorize]
     public class AdministrationController : Controller
     {
+        #region Private properties
         private readonly RoleManager<IdentityRole> _roleManager;
 
+        #endregion
+
+        #region Constructor
         public AdministrationController(RoleManager<IdentityRole> roleManager)
         {
             _roleManager = roleManager;
         }
 
+        #endregion
+
+        #region Routes
         [HttpGet]
         public IActionResult CreateRole()
         {
@@ -39,7 +46,7 @@ namespace ILS.Library.Web.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("ListRoles", "Administration");
                 }
 
                 foreach (IdentityError error in result.Errors)
@@ -50,5 +57,15 @@ namespace ILS.Library.Web.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult ListRoles()
+        {
+            var roles = _roleManager.Roles;
+
+            return View(roles);
+        }
+
+        #endregion
     }
 }
