@@ -144,7 +144,7 @@ namespace ILS.Library.Web.Controllers
 
         [HttpGet]
         [Authorize]
-        public IActionResult Checkout(int id)
+        public IActionResult Checkout(int id, bool cardInvalid)
         {
             var asset = _libraryAssetService.GetById(id);
 
@@ -154,7 +154,8 @@ namespace ILS.Library.Web.Controllers
                 Title = asset.Title,
                 ImageUrl = asset.ImageUrl,
                 LibraryCardId = "",
-                IsCheckedOut = _checkoutService.IsCheckedOut(id)
+                IsCheckedOut = _checkoutService.IsCheckedOut(id),
+                CardInvalid = (cardInvalid) ? true : false
             };
 
             return View(model);
@@ -200,8 +201,17 @@ namespace ILS.Library.Web.Controllers
         [HttpPost]
         public IActionResult PlaceCheckout(int assetId, int libraryCardId)
         {
-            _checkoutService.CheckOutItem(assetId, libraryCardId);
-            return RedirectToAction("Detail", new { id = assetId });
+            var cardIsValid = _checkoutService.CheckProvidedLibraryId(libraryCardId);
+
+            if (cardIsValid)
+            {
+                _checkoutService.CheckOutItem(assetId, libraryCardId);
+                return RedirectToAction("Detail", new { id = assetId });
+            }
+            else
+            {
+                return RedirectToAction("Checkout", new { id = assetId, cardInvalid = true });
+            }
         }
 
         [HttpPost]

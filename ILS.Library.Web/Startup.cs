@@ -8,6 +8,7 @@ using ILS.Library.Web.Services;
 using ILS.Library.Web.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +33,7 @@ namespace ILS.Library.Web
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddMvc();
             services.AddSingleton(Configuration);
+            services.AddHttpContextAccessor();
 
             services.AddScoped<ILibraryAssetService, LibraryAssetService>();
             services.AddScoped<ICheckoutService, CheckoutService>();

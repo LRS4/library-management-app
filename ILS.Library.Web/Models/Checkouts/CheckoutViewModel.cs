@@ -13,5 +13,6 @@ namespace ILS.Library.Web.Models.Checkouts
         public string ImageUrl { get; set; }
         public int HoldCount { get; set; }
         public bool IsCheckedOut { get; set; }
+        public bool CardInvalid { get; set; }
     }
 }

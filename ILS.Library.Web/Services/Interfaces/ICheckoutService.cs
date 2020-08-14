@@ -19,6 +19,7 @@ namespace ILS.Library.Web.Services.Interfaces
         string GetCurrentCheckoutPatron(int assetId);
         string GetCurrentHoldPatronName(int holdId);
         bool IsCheckedOut(int assetId);
+        bool CheckProvidedLibraryId(int libraryCardId);
 
         void Add(Checkout newCheckout);
         void CheckOutItem(int assetId, int libraryCardId);

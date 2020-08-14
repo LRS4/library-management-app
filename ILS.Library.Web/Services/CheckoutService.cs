@@ -1,6 +1,9 @@
 ﻿using ILS.Library.DataAccess.SecurityDb.Entities;
 using ILS.Library.DataAccess.SecurityDb.Entities.Asset;
+using ILS.Library.DataAccess.SecurityDb.Entities.Users;
 using ILS.Library.Web.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR.Protocol;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
@@ -15,14 +18,16 @@ namespace ILS.Library.Web.Services
     {
         #region Private properties
         private readonly ILSContext _context;
-
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         #endregion
 
         #region Constructor
-        public CheckoutService(ILSContext context)
+        public CheckoutService(ILSContext context,
+            IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
 
@@ -239,6 +244,15 @@ namespace ILS.Library.Web.Services
             return _context.Checkout
                 .Where(co => co.LibraryAssetId == assetId)
                 .Any();
+        }
+
+        public bool CheckProvidedLibraryId(int libraryCardId)
+        {
+            var currentUser = _httpContextAccessor.HttpContext.User.Identity.Name;
+            var confirmedCardId = _context.ApplicationUser
+                .FirstOrDefault(u => u.UserName == currentUser).LibraryCardId;
+
+            return confirmedCardId == libraryCardId;
         }
 
 

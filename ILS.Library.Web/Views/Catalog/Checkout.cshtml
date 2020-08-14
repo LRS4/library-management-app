@@ -31,13 +31,19 @@
             @*Using tag helpers.*@
             <div class="col-md-9">
                 <form asp-controller="Catalog" asp-action="PlaceCheckout" method="post">
-                    <div class="form-group">
+                    <div class="form-group mb-0">
                         <input type="hidden" name="assetId" value="@Model.AssetId" />
                         <label for="libraryCardId">Please insert your Library Card ID</label>
                         <input type="text" name="libraryCardId" class="form-control" id="libraryCardId" />
                     </div>
+                    <div class="mb-0">
+                        @if (Model.CardInvalid)
+                        {
+                            <small class="text-danger">Incorrect library card entered.</small>
+                        }
+                    </div>
                     <div>
-                        <button type="submit" class="btn btn-success btn-lg">Place Checkout</button>
+                        <button type="submit" class="btn btn-success btn-lg mt-3">Place Checkout</button>
                     </div>
                 </form>
 
