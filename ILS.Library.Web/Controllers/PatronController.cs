@@ -32,7 +32,7 @@ namespace ILS.Library.Web.Controllers
 
             var patronModel = allPatrons.Select(p => new PatronDetailModel
             {
-                Id = p.PatronId,
+                Id = p.Id,
                 FirstName = p.FirstName,
                 LastName = p.LastName,
                 LibraryCardId = p.LibraryCardId,
@@ -48,7 +48,7 @@ namespace ILS.Library.Web.Controllers
             return View(model);
         }
 
-        public IActionResult Detail(int patronId)
+        public IActionResult Detail(string patronId)
         {
             var patron = _patronService.Get(patronId);
 

@@ -6,11 +6,11 @@ namespace ILS.Library.Web.Services.Interfaces
 {
     public interface IPatronService
     {
-        Patron Get(int id);
-        IEnumerable<Patron> GetAll();
+        ApplicationUser Get(string id);
+        IEnumerable<ApplicationUser> GetAll();
         void Add(Patron newPatron);
-        IEnumerable<CheckoutHistory> GetCheckoutHistory(int patronId);
-        IEnumerable<Hold> GetHolds(int patronId);
-        IEnumerable<Checkout> GetCheckouts(int patronId);
+        IEnumerable<CheckoutHistory> GetCheckoutHistory(string patronId);
+        IEnumerable<Hold> GetHolds(string patronId);
+        IEnumerable<Checkout> GetCheckouts(string patronId);
     }
 }

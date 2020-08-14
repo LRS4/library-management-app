@@ -35,22 +35,22 @@ namespace ILS.Library.Web.Services
             _context.SaveChanges();
         }
 
-        public Patron Get(int id)
+        public ApplicationUser Get(string id)
         {
-            return _context.Patron
+            return _context.ApplicationUser
                 .Include(patron => patron.LibraryCard)
                 .Include(patron => patron.HomeLibraryBranch)
-                .FirstOrDefault(patron => patron.PatronId == id);
+                .FirstOrDefault(patron => patron.Id == id);
         }
 
-        public IEnumerable<Patron> GetAll()
+        public IEnumerable<ApplicationUser> GetAll()
         {
-            return _context.Patron
+            return _context.ApplicationUser
                 .Include(patron => patron.LibraryCard)
                 .Include(patron => patron.HomeLibraryBranch);
         }
 
-        public IEnumerable<CheckoutHistory> GetCheckoutHistory(int patronId)
+        public IEnumerable<CheckoutHistory> GetCheckoutHistory(string patronId)
         {
             var cardId = Get(patronId).LibraryCard.LibraryCardId;
 
@@ -61,7 +61,7 @@ namespace ILS.Library.Web.Services
                 .OrderByDescending(co => co.CheckedOut);
         }
 
-        public IEnumerable<Checkout> GetCheckouts(int patronId)
+        public IEnumerable<Checkout> GetCheckouts(string patronId)
         {
             var cardId = Get(patronId).LibraryCard.LibraryCardId;
 
@@ -71,7 +71,7 @@ namespace ILS.Library.Web.Services
                 .Where(co => co.LibraryCard.LibraryCardId == cardId);
         }
 
-        public IEnumerable<Hold> GetHolds(int patronId)
+        public IEnumerable<Hold> GetHolds(string patronId)
         {
             var cardId = Get(patronId).LibraryCard.LibraryCardId;
 
