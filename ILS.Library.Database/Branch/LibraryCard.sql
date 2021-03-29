@@ -10,6 +10,15 @@
     )
 )
 
+
+GO
+EXEC sp_addextendedproperty @name = N'MS_Description',
+    @value = N'Stores library card details with fees.',
+    @level0type = N'SCHEMA',
+    @level0name = N'Branch',
+    @level1type = N'TABLE',
+    @level1name = N'LibraryCard'
+
 GO
 EXEC sp_addextendedproperty @name = N'MS_Description',
     @value = N'The surrogate primary key for this table.',
@@ -19,6 +28,7 @@ EXEC sp_addextendedproperty @name = N'MS_Description',
     @level1name = N'LibraryCard',
     @level2type = N'COLUMN',
     @level2name = N'LibraryCardId'
+
 GO
 EXEC sp_addextendedproperty @name = N'MS_Description',
     @value = N'The date and time when the library card was issued.',
@@ -28,6 +38,7 @@ EXEC sp_addextendedproperty @name = N'MS_Description',
     @level1name = N'LibraryCard',
     @level2type = N'COLUMN',
     @level2name = N'Created'
+
 GO
 EXEC sp_addextendedproperty @name = N'MS_Description',
     @value = N'Any outstanding fees on the library card.',

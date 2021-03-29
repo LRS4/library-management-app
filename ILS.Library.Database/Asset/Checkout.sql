@@ -26,6 +26,14 @@
 
 GO
 EXEC sp_addextendedproperty @name = N'MS_Description',
+    @value = N'Stores checkout records for all library assets against library cards',
+    @level0type = N'SCHEMA',
+    @level0name = N'Asset',
+    @level1type = N'TABLE',
+    @level1name = N'Checkout'
+
+GO
+EXEC sp_addextendedproperty @name = N'MS_Description',
     @value = N'This references the library asset that was checked out',
     @level0type = N'SCHEMA',
     @level0name = N'Asset',

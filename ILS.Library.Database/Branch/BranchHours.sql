@@ -19,6 +19,14 @@
 
 GO
 EXEC sp_addextendedproperty @name = N'MS_Description',
+    @value = N'Stores branch opening hours.',
+    @level0type = N'SCHEMA',
+    @level0name = N'Branch',
+    @level1type = N'TABLE',
+    @level1name = N'BranchHours'
+
+GO
+EXEC sp_addextendedproperty @name = N'MS_Description',
     @value = N'Identifier for the branch in which the hours belong to.',
     @level0type = N'SCHEMA',
     @level0name = N'Branch',
@@ -26,6 +34,7 @@ EXEC sp_addextendedproperty @name = N'MS_Description',
     @level1name = N'BranchHours',
     @level2type = N'COLUMN',
     @level2name = N'BranchId'
+
 GO
 EXEC sp_addextendedproperty @name = N'MS_Description',
     @value = N'The closing time of the branch.',
@@ -35,6 +44,7 @@ EXEC sp_addextendedproperty @name = N'MS_Description',
     @level1name = N'BranchHours',
     @level2type = N'COLUMN',
     @level2name = N'CloseTime'
+
 GO
 EXEC sp_addextendedproperty @name = N'MS_Description',
     @value = N'The days of the week that the branch is open.',
@@ -44,6 +54,7 @@ EXEC sp_addextendedproperty @name = N'MS_Description',
     @level1name = N'BranchHours',
     @level2type = N'COLUMN',
     @level2name = 'DayOfWeek'
+
 GO
 EXEC sp_addextendedproperty @name = N'MS_Description',
     @value = N'The hour at which the branch opens.',
